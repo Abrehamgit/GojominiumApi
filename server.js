@@ -74,7 +74,10 @@ app.get(
 
 app.delete("/delete_condo", profile.handleDeleteCondo(db, jwt));
 
-app.listen(8000, console.log("app is running on port 8000"));
+app.listen(
+	process.env.PORT || 8000,
+	console.log(`app is running on port ${process.env.PORT}`)
+);
 
 // get filtered
 // get recent
