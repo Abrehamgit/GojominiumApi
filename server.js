@@ -4,6 +4,10 @@ const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const knex = require("knex");
 const bcrypt = require("bcrypt");
+const dotenv = require("dotenv");
+
+dotenv.config();
+
 // const multer = require("multer");
 const signIn = require("./controllers/signIn");
 const register = require("./controllers/register");
@@ -32,7 +36,7 @@ const db = knex({
 	}
 });
 
-const SECRET = "akjasdiioqwbjbhio123hoihoxdcai12boiu123bouaoiasdo";
+const SECRET = process.env.JWT_SECRET;
 
 app.use(bodyParser.json());
 app.use(cors());
