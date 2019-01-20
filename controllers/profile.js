@@ -37,7 +37,7 @@ const handlePost = (db, jwt) => (req, res) => {
 		ceramics,
 		spotlights,
 		featured,
-		apType
+		aptype: apType
 	})
 		.into("condominiums")
 		.returning("*")
@@ -113,7 +113,7 @@ const handleEditCondo = (db, jwt) => (req, res) => {
 			ceramics,
 			spotlights,
 			postedat,
-			apType
+			aptype: apType
 		})
 		.then(() => {
 			res.json("successfully editted");
