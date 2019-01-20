@@ -9,7 +9,7 @@ const handleSignIn = (db, jwt, bcrypt, SECRET) => (req, res) => {
 			if (isValid) {
 				const userId = data[0].id;
 				const token = jwt.sign({ userId }, SECRET, {
-					expiresIn: "10hr"
+					expiresIn: "2hr"
 				});
 
 				res.json({ userId, token });

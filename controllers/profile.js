@@ -17,23 +17,12 @@ const handlePost = (db, jwt) => (req, res) => {
 		tiles,
 		ceramics,
 		spotlights,
-		featured,
-		image1,
-		image2,
-		image3,
-		image4,
-		image5,
-		image6,
-		image7,
-		image8,
-		image9,
-		image10
+		featured
 	} = req.body;
 
 	db.insert({
 		id: condoid,
 		ownerid,
-		apType,
 		location,
 		type,
 		floor,
@@ -48,16 +37,7 @@ const handlePost = (db, jwt) => (req, res) => {
 		ceramics,
 		spotlights,
 		featured,
-		image1,
-		image2,
-		image3,
-		image4,
-		image5,
-		image6,
-		image7,
-		image8,
-		image9,
-		image10
+		apType
 	})
 		.into("condominiums")
 		.returning("*")
@@ -119,7 +99,6 @@ const handleEditCondo = (db, jwt) => (req, res) => {
 		.from("condominiums")
 		.where("id", "=", condoid)
 		.update({
-			apType,
 			location,
 			type,
 			floor,
@@ -133,7 +112,8 @@ const handleEditCondo = (db, jwt) => (req, res) => {
 			tiles,
 			ceramics,
 			spotlights,
-			postedat
+			postedat,
+			apType
 		})
 		.then(() => {
 			res.json("successfully editted");
