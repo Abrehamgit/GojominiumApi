@@ -3,6 +3,7 @@ const handlePost = (db, jwt) => (req, res) => {
 	const {
 		condoid,
 		ownerid,
+		apType,
 		location,
 		type,
 		floor,
@@ -32,6 +33,7 @@ const handlePost = (db, jwt) => (req, res) => {
 	db.insert({
 		id: condoid,
 		ownerid,
+		apType,
 		location,
 		type,
 		floor,
@@ -97,6 +99,7 @@ const handleEditCondo = (db, jwt) => (req, res) => {
 	const {
 		condoid,
 		ownerid,
+		apType,
 		location,
 		type,
 		floor,
@@ -116,6 +119,7 @@ const handleEditCondo = (db, jwt) => (req, res) => {
 		.from("condominiums")
 		.where("id", "=", condoid)
 		.update({
+			apType,
 			location,
 			type,
 			floor,
