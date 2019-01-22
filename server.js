@@ -4,6 +4,7 @@ const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const knex = require("knex");
 const bcrypt = require("bcrypt");
+const moment = require("moment");
 
 const signIn = require("./controllers/signIn");
 const register = require("./controllers/register");
@@ -12,18 +13,6 @@ const condos = require("./controllers/condos");
 const secrets = require("./config/secrets");
 
 const app = express();
-// const storage = multer.diskStorage({
-// 	destination: function(req, file, cb) {
-// 		cb(null, "./uploads");
-// 	},
-// 	filename: function(req, file, cb) {
-// 		cb(null, new Date().toISOString() + file.originalname);
-// 	}
-// });
-
-// const upload = multer({ storage: storage });
-
-app.use(express.static("uploads"));
 
 const db = knex({
 	client: "pg",
@@ -39,13 +28,12 @@ app.use(bodyParser.json());
 app.use(cors());
 
 app.get("/", (req, res) => {
-	console.log("reqesting");
-	res.json("i hear you");
+	res.json("root request  i hear you");
 });
 
-app.post("/register", register.handleRegister(db, jwt, bcrypt, SECRET));
+app.post("/register", register.handleRegister(db, jwt, bcrypt, SECRET, moment));
 
-app.post("/signin", signIn.handleSignIn(db, jwt, bcrypt, SECRET));
+app.post("/signin", signIn.handleSignIn(db, jwt, bcrypt, SECRET, moment));
 
 app.post("/post", profile.handlePost(db, jwt));
 

@@ -1,5 +1,7 @@
-const handleSignIn = (db, jwt, bcrypt, SECRET) => (req, res) => {
+const handleSignIn = (db, jwt, bcrypt, SECRET, moment) => (req, res) => {
 	const { email, password } = req.body;
+
+	const expDate = moment().hour(2);
 
 	db.select("id", "email", "hash")
 		.from("users")
@@ -9,7 +11,7 @@ const handleSignIn = (db, jwt, bcrypt, SECRET) => (req, res) => {
 			if (isValid) {
 				const userId = data[0].id;
 				const token = jwt.sign({ userId }, SECRET, {
-					expiresIn: "2hr"
+					expDate
 				});
 
 				res.json({ userId, token });
