@@ -10,9 +10,7 @@ const handleSignIn = (db, jwt, bcrypt, SECRET, moment) => (req, res) => {
 			const isValid = bcrypt.compareSync(password, data[0].hash);
 			if (isValid) {
 				const userId = data[0].id;
-				const token = jwt.sign({ userId }, SECRET, {
-					exp
-				});
+				const token = jwt.sign({ userId, exp }, SECRET);
 
 				res.json({ userId, token });
 			} else {
