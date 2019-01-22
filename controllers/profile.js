@@ -17,7 +17,8 @@ const handlePost = (db, jwt) => (req, res) => {
 		tiles,
 		ceramics,
 		spotlights,
-		featured
+		featured,
+		images,
 	} = req.body;
 
 	db.insert({
@@ -37,7 +38,18 @@ const handlePost = (db, jwt) => (req, res) => {
 		ceramics,
 		spotlights,
 		featured,
-		aptype: apType
+		aptype: apType,
+		image1 : images[0],
+		image2 : images[1],
+		image3 : images[2],
+		image4 : images[3],
+		image5 : images[4],
+		image6 : images[5],
+		image7 : images[6],
+		image8 : images[7],
+		image9 : images[8],
+		image10: images[9]
+
 	})
 		.into("condominiums")
 		.returning("*")
