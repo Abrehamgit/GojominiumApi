@@ -31,9 +31,9 @@ app.get("/", (req, res) => {
 	res.json("root request  i hear you");
 });
 
-app.post("/register", register.handleRegister(db, jwt, bcrypt, SECRET, moment));
+app.post("/register", register.handleRegister(db, jwt, bcrypt, SECRET));
 
-app.post("/signin", signIn.handleSignIn(db, jwt, bcrypt, SECRET, moment));
+app.post("/signin", signIn.handleSignIn(db, jwt, bcrypt, SECRET));
 
 app.post("/post", profile.handlePost(db, jwt));
 
@@ -54,11 +54,6 @@ app.get(
 	condos.handleGetFilteredCondos(db)
 );
 
-// app.post("/cover", upload.single("coverImg"), (req, res) => {
-// 	console.log("uploading");
-// 	console.log(req.file);
-// });
-
 app.delete("/delete_condo", profile.handleDeleteCondo(db, jwt));
 
 app.listen(
@@ -66,6 +61,4 @@ app.listen(
 	console.log(`app is running on port ${process.env.PORT}`)
 );
 
-// get filtered
-// get recent
-// get featured
+
