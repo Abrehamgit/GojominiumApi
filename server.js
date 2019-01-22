@@ -9,7 +9,7 @@ const signIn = require("./controllers/signIn");
 const register = require("./controllers/register");
 const profile = require("./controllers/profile");
 const condos = require("./controllers/condos");
-const { JWT_SECRET } = require("./config/secrets");
+const secrets = require("./config/secrets");
 
 const app = express();
 // const storage = multer.diskStorage({
@@ -33,7 +33,7 @@ const db = knex({
 	}
 });
 
-const SECRET = JWT_SECRET;
+const SECRET = secrets.JWT_SECRET;
 
 app.use(bodyParser.json());
 app.use(cors());
