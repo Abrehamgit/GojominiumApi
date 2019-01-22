@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node --require dotenv/config server.js "
   },
   "engines": {
     "node": "8.11.3",
