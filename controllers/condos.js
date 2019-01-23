@@ -1,3 +1,5 @@
+const moment = require("moment");
+
 const handleGetAllCondos = db => (req, res) => {
 	const { offset } = req.params;
 
@@ -26,9 +28,17 @@ const handleGetACondo = db => (req, res) => {
 };
 
 const handleGetFeaturedCondos = db => (req, res) => {
+	const now = moment();
+
 	db.select("*")
 		.from("condominiums")
+		.orderBy("postedat", "desc")
+		.offset(0)
+		.limit(15)
 		.where("featured", "=", true)
+		.returning("*")
+		.where("expdate", ">=", now)
+		.returning("*")
 		.then(data => res.json({ featuredCondos: data, message: "lodaed" }))
 		.catch(err => res.json({ err, message: "something went wrong" }));
 };

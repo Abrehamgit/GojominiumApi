@@ -1,5 +1,6 @@
 const handlePost = (db, jwt) => (req, res) => {
 	console.log("postting");
+
 	const {
 		condoid,
 		ownerid,
@@ -21,6 +22,8 @@ const handlePost = (db, jwt) => (req, res) => {
 		expDate,
 		images
 	} = req.body;
+
+	console.log(expDate);
 
 	db.insert({
 		id: condoid,
