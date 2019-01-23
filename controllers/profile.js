@@ -162,7 +162,11 @@ const handleDeleteImages = db => (req, res) => {
 			image8: null,
 			image9: null,
 			image10: null
-		});
+		})
+		.then(() => {
+			res.json("successfully deleted images");
+		})
+		.catch(err => res.json({ message: "something went wrong", err: err }));
 };
 
 module.exports = {
