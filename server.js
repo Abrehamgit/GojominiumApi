@@ -39,6 +39,8 @@ app.post("/post", profile.handlePost(db, jwt));
 
 app.put("/edit_condo", profile.handleEditCondo(db, jwt));
 
+app.put("/delete_images/:condoId", profile.handleDeleteImages(db));
+
 app.get("/get_condos/:ownerid", profile.handleGetCondos(db, jwt));
 
 app.get("/get_all_condos/:offset", condos.handleGetAllCondos(db));
@@ -60,5 +62,3 @@ app.listen(
 	process.env.PORT || 8000,
 	console.log(`app is running on port ${process.env.PORT}`)
 );
-
-

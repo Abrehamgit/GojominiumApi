@@ -18,6 +18,7 @@ const handlePost = (db, jwt) => (req, res) => {
 		ceramics,
 		spotlights,
 		featured,
+		expDate,
 		images
 	} = req.body;
 
@@ -48,7 +49,8 @@ const handlePost = (db, jwt) => (req, res) => {
 		image7: images[6],
 		image8: images[7],
 		image9: images[8],
-		image10: images[9]
+		image10: images[9],
+		expdate: expDate
 	})
 		.into("condominiums")
 		.returning("*")
@@ -143,9 +145,30 @@ const handleEditCondo = (db, jwt) => (req, res) => {
 		.catch(err => res.json({ message: "something went wrong", err: err }));
 };
 
+const handleDeleteImages = db => (req, res) => {
+	const { condoId } = req.params;
+
+	db.select("*")
+		.from("condominiums")
+		.where("id", "=", condoId)
+		.update({
+			image1: null,
+			image2: null,
+			image3: null,
+			image4: null,
+			image5: null,
+			image6: null,
+			image7: null,
+			image8: null,
+			image9: null,
+			image10: null
+		});
+};
+
 module.exports = {
 	handlePost,
 	handleGetCondos,
 	handleDeleteCondo,
-	handleEditCondo
+	handleEditCondo,
+	handleDeleteImages
 };
